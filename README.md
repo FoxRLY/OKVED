@@ -4,7 +4,7 @@
 - python 3.13
 - uv (https://docs.astral.sh/uv/getting-started/installation/)
 ## Как запускать?
-uv run main.py +79999999999
+```uv run main.py +79999999999```
 ## Пример работы:
 ```
 uv run main.py +79999999910
