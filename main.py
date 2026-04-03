@@ -26,13 +26,15 @@ tree = OkvedSearchTree()
 for data in okveds:
     tree.add(data)
 
-found_okved = tree.find_by_phone(phone)
-
-if found_okved:
-    print("ОКВЭД найден!\n")
-    print(f"Телефон: {phone}")
-    print(f"ОКВЭД: {found_okved.code} | {found_okved.name}")
-    print(f"Длина совпадения: {len(OkvedSearchTree._path_from_code(found_okved.code))}") # type: ignore
-else:
+result = tree.find_by_phone(phone)
+if result is None:
     print("Не повезло!")
+    exit()
+
+found_okved, match_length = result
+
+print("ОКВЭД найден!\n")
+print(f"Телефон: {phone}")
+print(f"ОКВЭД: {found_okved.code} | {found_okved.name}")
+print(f"Длина совпадения: {match_length}")
 

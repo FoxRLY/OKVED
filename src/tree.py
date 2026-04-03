@@ -76,15 +76,20 @@ class OkvedSearchTree:
 
         self.start_node.add(data, path)
 
-    def find_by_phone(self, phone: str) -> OkvedData | None:
+    def find_by_phone(self, phone: str) -> tuple[OkvedData, int] | None:
         """Найти ОКВЭД по номеру телефона."""
 
         path = OkvedSearchTree._path_from_phone(phone)
 
         if path is None:
             return None
-        else:
-            return self.start_node.find(path)
+
+        found_okved = self.start_node.find(path)
+
+        if found_okved is None:
+            return None
+
+        return found_okved, len(OkvedSearchTree._path_from_code(found_okved.code)) # type: ignore
 
     @staticmethod
     def _path_from_code(code: str) -> str | None:
